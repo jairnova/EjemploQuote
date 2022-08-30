@@ -1,10 +1,10 @@
 package com.example.examplemvvm.data.model
 
-class QuoteProvider {
+import javax.inject.Inject
+import javax.inject.Singleton
 
-    // seria como una clase estatica en java
-    companion object {
+@Singleton
+class QuoteProvider @Inject constructor(){
 
-        var quotes:List<QuoteModel> = emptyList()
-    }
+    var quotes:List<QuoteModel> = emptyList()
 }

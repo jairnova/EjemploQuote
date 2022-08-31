@@ -1,16 +1,26 @@
 package com.example.examplemvvm.domain
 
 import com.example.examplemvvm.data.QuoteRepository
-import com.example.examplemvvm.data.model.QuoteModel
+import com.example.examplemvvm.data.database.entities.toDatabase
+import com.example.examplemvvm.domain.model.QuoteItem
 import javax.inject.Inject
 
 class GetQuotesUseCase @Inject constructor(
     private val repository: QuoteRepository
 ){
+// No es necesario colocar "UseCase" en el nombre de la clase ya que es solo para recordar que esta
+// clase se encarga de un caso de uso, que seria la lógica de negocio
 
-// No es necesario colocar "UseCase" en el nombre ya que es solo par que se recuerde que esta
-// clase se en carga de un caso de uso que seria la lógica de negocio
+    suspend operator fun invoke():List<QuoteItem> {
 
-    suspend operator fun invoke():List<QuoteModel>? = repository.getAllQuotes()
+        val quotes = repository.getAllQuotesFromApi()
 
+       return if(quotes.isNotEmpty()){
+           repository.clearQuotes()
+           repository.insertQuotes(quotes.map { it.toDatabase() })
+           quotes
+        } else {
+            repository.getAllQuotesFromDataBase()
+        }
+    }
 }

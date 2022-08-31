@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         quoteViewModel.onCreate()
 
         // llega la respuesta del viewModel en este caso
-        quoteViewModel.quoteModel.observe(this, Observer { currentQuote ->
+        quoteViewModel.quoteItemModel.observe(this, Observer { currentQuote ->
             binding.tvQuote.text = currentQuote.quote
             binding.tvAuthor.text = currentQuote.author
         })

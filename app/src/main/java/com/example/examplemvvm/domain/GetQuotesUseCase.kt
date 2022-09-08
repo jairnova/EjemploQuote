@@ -11,6 +11,8 @@ class GetQuotesUseCase @Inject constructor(
 // No es necesario colocar "UseCase" en el nombre de la clase ya que es solo para recordar que esta
 // clase se encarga de un caso de uso, que seria la lógica de negocio
 
+    //Si creo una intancia de esta clase automaticamente estaria llamando al método invoke ejecutando
+    // lo que este dentro del método asiendolo mas pro, el siempre retornar lo que esta pidiendo el caso de uso
     suspend operator fun invoke():List<QuoteItem> {
 
         val quotes = repository.getAllQuotesFromApi()

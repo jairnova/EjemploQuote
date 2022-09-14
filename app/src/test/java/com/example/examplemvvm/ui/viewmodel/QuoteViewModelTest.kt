@@ -28,7 +28,9 @@ class QuoteViewModelTest{
 
     private lateinit var quoteViewModel: QuoteViewModel
 
-    //Creamos una regla es una función en el onBefore abstraída lo que permite su reutilización entre otras ventajas
+    //Para ayudar a testear los LiveData creamos una regla, es una función en el onBefore abstraída
+    // lo que permite su reutilización entre otras ventajas.
+    //En nuestro caso la regla va ser de tipo InstantTaskExecutorRule para ayudar a testear los livedata
     @get:Rule
     var rule:InstantTaskExecutorRule = InstantTaskExecutorRule()
 
